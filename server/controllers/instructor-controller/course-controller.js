@@ -1,4 +1,3 @@
-const { message } = require('antd');
 const Course = require('../../models/Course');
 
 const addNewCourse = async (req,res) => {

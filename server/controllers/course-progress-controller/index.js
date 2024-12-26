@@ -1,7 +1,6 @@
 const CourseProgress = require('../../models/CourseProgress');
 const Course = require('../../models/Course');
 const StudentCourses = require('../../models/StudentCourses');
-const { message } = require('antd');
 
 const markCurrentLectureAsViewed = async(req,res) => {
     try{
