@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { initialSignInFormData, initialSignUpFormData } from "@/config";
 import { loginService, registerService, checkAuthService } from "@/services";
-import { Skeleton } from "antd";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export const AuthContext = createContext(null);
 

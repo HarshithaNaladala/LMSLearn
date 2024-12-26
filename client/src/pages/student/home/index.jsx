@@ -1,5 +1,5 @@
 import { courseCategories } from '@/config';
-import banner from '../../../../public/banner-img.png';
+// import banner from '../../../../public/banner-img.png';
 import { Button } from '@/components/ui/button';
 import { useContext, useEffect } from 'react';
 import { StudentContext } from '@/context/student-context';
@@ -57,7 +57,7 @@ function StudentHomePage() {
                     <p className="text-xl">Skills for your present and your future. Get started with US</p>
                 </div>
                 <div className="lg:w-full mb-8 lg:mb-0">
-                    <img src={banner} width={600} height={400} className='w-full h-auto rounded-lg shadow-lg'/>
+                    <img src="/banner-img.png" width={600} height={400} className='w-full h-auto rounded-lg shadow-lg'/>
                 </div>
             </section>
             <section className='py-8 px-4 lg:px-8 bg-gray-100'>
