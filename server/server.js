@@ -12,8 +12,8 @@ const studentCoursesRoutes = require('./routes/student-routes/student-courses-ro
 const studentCourseProgressRoutes = require('./routes/student-routes/course-progress-routes');
 
 const app = express();
-const PORT = process.env.PORT;
-const MONGO_URL = process.env.MONGO_URL;
+const PORT = process.env.VITE_PORT;
+const MONGO_URL = process.env.VITE_MONGO_URL;
 
 app.use(express.json());
 
