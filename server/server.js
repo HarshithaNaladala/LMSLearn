@@ -19,7 +19,7 @@ app.use(express.json());
 
 const corsOptions = {
     methods: ['GET','POST','PUT','DELETE'],
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173','https://lms-learn-md0gv8lcl-harshitha-naladalas-projects.vercel.app/'],
     allowedHeaders: ['Content-Type','Authorization'],
 };
 
