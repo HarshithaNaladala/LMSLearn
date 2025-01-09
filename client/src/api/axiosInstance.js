@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-    baseURL: 'https://lms-learn-git-main-harshitha-naladalas-projects.vercel.app/',
+    baseURL: 'http://localhost:5000',
 });
 
 axiosInstance.interceptors.request.use(config => {
