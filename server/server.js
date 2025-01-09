@@ -30,10 +30,6 @@ mongoose.connect(MONGO_URL)
         .then(()=>console.log("DB connected"))
         .catch((e)=>console.log(e));
 
-app.get('/', (req, res) => {
-    res.redirect('/auth');
-});
-
 //Routes configuration
 app.use('/auth', authRoutes);
 app.use('/media',mediaRoutes);
