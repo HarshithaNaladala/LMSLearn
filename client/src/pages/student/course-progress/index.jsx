@@ -86,6 +86,10 @@ function StudentViewCourseProgressPage() {
         }
     }
 
+    function handleLectureClick(lecture) {
+        setCurrentLecture(lecture);
+    }
+
     useEffect(()=>{
         fetchCurrentCourseProgress();
     },[id])
@@ -129,12 +133,12 @@ function StudentViewCourseProgressPage() {
             <div className="flex flex-1 overflow-hidden">
                 <div className={`flex-1 ${isSideBarOpen ? 'mr-[400px]' : ''} transition-all duration-300`}>
                     <VideoPlayer 
-                    width="100%"
-                    height="500px"
-                    url={currentLecture?.videoURL}
-                    onProgressUpdate={setCurrentLecture}
-                    progressData={currentLecture}
-                />
+                        width="100%"
+                        height="500px"
+                        url={currentLecture?.videoURL}
+                        onProgressUpdate={setCurrentLecture}
+                        progressData={currentLecture}
+                    />
                 <div className="p-6 bg-[#1c1d1f]">
                     <h2 className="text-2xl font-bold mb-2">{currentLecture?.title}</h2>
                 </div>
@@ -150,7 +154,7 @@ function StudentViewCourseProgressPage() {
                                 <div className="p-4 space-y-4">
                                     {
                                         studentCurrentCourseProgress?.courseDetails?.curriculum.map(item=>(
-                                            <div key={item._id} className="flex items-center space-x-2 text-sm text-white font-bold cursor-pointer">
+                                            <div key={item._id} onClick={() => handleLectureClick(item)} className="flex items-center space-x-2 text-sm text-white font-bold cursor-pointer">
                                                 {
                                                     studentCurrentCourseProgress?.progress?.find(progressItem=>progressItem.lectureId === item._id)?.viewed 
                                                     ? <Check className="h-4 w-4 text-green-500"/> : <Play className="h-4 w-4"/>

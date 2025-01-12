@@ -4,21 +4,22 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { signUpFormControls, signInFormControls } from "@/config";
 import { AuthContext } from "@/context/auth-context";
 import { GraduationCap } from "lucide-react";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 function AuthPage() {
-    const [activeTab, setActiveTab] = useState('signin');
+    // const [activeTab, setActiveTab] = useState('signin');
 
     const {
         signInFormData, 
         setSignInFormData, 
         signUpFormData, 
         setSignUpFormData,
-        handleRegisterUser,
-        handleLoginUser
+        handleRegisterUser, 
+        handleLoginUser,
+        activeTab,
+        setActiveTab,
     } = useContext(AuthContext);
-
 
     function handleTabChange ({value}){
         return setActiveTab(value);

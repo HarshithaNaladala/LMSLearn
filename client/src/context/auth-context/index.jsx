@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { initialSignInFormData, initialSignUpFormData } from "@/config";
 import { loginService, registerService, checkAuthService } from "@/services";
 import { Skeleton } from "@/components/ui/skeleton";
+import { AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 
 export const AuthContext = createContext(null);
 
@@ -10,37 +11,102 @@ function AuthProvider({children}){
     const [signInFormData, setSignInFormData] = useState(initialSignInFormData);
     const [signUpFormData, setSignUpFormData] = useState(initialSignUpFormData);
     const [loading, setLoading] = useState(true);
+    const [activeTab, setActiveTab] = useState('signin');
     const [auth, setAuth] = useState({
         authenticate: false,
         user: null,
     });
+    const [dialog, setDialog] = useState({
+        isOpen: false,
+        title: "",
+        description: "",
+    });
+
+    const openDialog = (title, description) => {
+        setDialog({ isOpen: true, title, description });
+    };
+
+    const closeDialog = () => {
+        setDialog({ ...dialog, isOpen: false });
+    };
+
+    // async function handleRegisterUser(event) {
+    //     event.preventDefault();
+    //     const data = await registerService(signUpFormData);
+
+    //     if(data.success){
+    //         // alert("User Registered Successfully!");
+    //         openDialog("Registration Successful", "User Registered Successfully!");
+    //         setSignUpFormData(initialSignUpFormData);
+    //         setActiveTab('signin');
+    //     }
+    //     else{
+    //         // alert("User Not Registered Successfully!");
+    //         openDialog("Registration Failed", "User Not Registered Successfully!");
+    //     }
+    // }
+
+    // async function handleLoginUser(event) {
+    //     event.preventDefault();
+    //     const data = await loginService(signInFormData);
+
+    //     if(data.success){
+    //         sessionStorage.setItem('accessToken',data.data.accessToken);
+    //         setAuth({
+    //             authenticate: true,
+    //             user: data.data.user,
+    //         })
+    //         setSignInFormData(initialSignInFormData);
+    //         openDialog("Login Successful", "Welcome back!");
+    //     }
+    //     else{
+    //         setAuth({
+    //             authenticate: false,
+    //             user: null,
+    //         })
+    //         openDialog("Login Failed", "Check your credentials and try again.");
+    //     }
+
+    // }
 
     async function handleRegisterUser(event) {
         event.preventDefault();
-        const data = await registerService(signUpFormData);
-
-        console.log(data);
+        try {
+            const data = await registerService(signUpFormData);
+            if(data.success){
+                openDialog("Registration Successful", "User Registered Successfully!");
+                setSignUpFormData(initialSignUpFormData); 
+                setActiveTab('signin'); 
+            } else {
+                openDialog("Registration Failed", data.message || "User Not Registered Successfully!");
+            }
+        } catch (error) {
+            console.error("Registration error:", error);
+            openDialog("Registration Error", error.response?.data?.message || "An unexpected error occurred during registration.");
+        }
     }
-
+    
     async function handleLoginUser(event) {
         event.preventDefault();
-        const data = await loginService(signInFormData);
-
-        if(data.success){
-            sessionStorage.setItem('accessToken',data.data.accessToken);
-            setAuth({
-                authenticate: true,
-                user: data.data.user,
-            })
+        try {
+            const data = await loginService(signInFormData);
+            if(data.success){
+                sessionStorage.setItem('accessToken', data.data.accessToken);
+                setAuth({
+                    authenticate: true,
+                    user: data.data.user,
+                });
+                setSignInFormData(initialSignInFormData);
+                openDialog("Login Successful", "Welcome back!");
+            } else {
+                openDialog("Login Failed", data.message || "Check your credentials and try again.");
+            }
+        } catch (error) {
+            console.error("Login error:", error);
+            openDialog("Login Error", error.response?.data?.message || "An unexpected error occurred during login.");
         }
-        else{
-            setAuth({
-                authenticate: false,
-                user: null,
-            })
-        }
-
     }
+    
 
     async function checkAuthUser() {
         try{
@@ -88,21 +154,34 @@ function AuthProvider({children}){
 
     return(
         <AuthContext.Provider 
-            value={{
-                    signInFormData, 
-                    setSignInFormData, 
-                    signUpFormData, 
-                    setSignUpFormData,
-                    handleRegisterUser,
-                    handleLoginUser,
-                    auth,
-                    resetCredentials,
+            value=  {{
+                        signInFormData, 
+                        setSignInFormData, 
+                        signUpFormData, 
+                        setSignUpFormData,
+                        handleRegisterUser,
+                        handleLoginUser,
+                        auth,
+                        resetCredentials,
+                        activeTab,
+                        setActiveTab,
                     }}
                 >
                     {
                         loading ? <Skeleton /> : children
                     }
-                </AuthContext.Provider>
+                    <AlertDialog open={dialog.isOpen} onOpenChange={closeDialog}>
+                        <AlertDialogContent>
+                            <AlertDialogHeader>
+                                <AlertDialogTitle>{dialog.title}</AlertDialogTitle>
+                                <AlertDialogDescription>{dialog.description}</AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                                <AlertDialogCancel onClick={closeDialog}>Close</AlertDialogCancel>
+                            </AlertDialogFooter>
+                        </AlertDialogContent>
+                    </AlertDialog>
+        </AuthContext.Provider>
     )
 }
 

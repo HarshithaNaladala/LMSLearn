@@ -6,6 +6,9 @@ import { StudentContext } from '@/context/student-context';
 import { checkCoursePurchaseInfoService, fetchStudentViewCourseListService } from '@/services';
 import { AuthContext } from '@/context/auth-context';
 import { useNavigate } from 'react-router-dom';
+import Footer from '@/components/Footer';
+import WhyChooseUs from '@/components/WhyChooseUs';
+import Testimonials from '@/components/Testimonials';
 
 function StudentHomePage() {
 
@@ -60,7 +63,7 @@ function StudentHomePage() {
                     <img src="/banner-img.png" width={600} height={400} className='w-full h-auto rounded-lg shadow-lg'/>
                 </div>
             </section>
-            <section className='py-8 px-4 lg:px-8 bg-gray-100'>
+            {/* <section className='py-8 px-4 lg:px-8 bg-gray-100'>
                 <h2 className='text-2xl font-bold mb-6'>Course categories</h2>
                 <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4'>
                     {
@@ -74,6 +77,9 @@ function StudentHomePage() {
                         ))
                     }
                 </div>
+            </section> */}
+            <section className='py-8 px-4 lg:px-8 bg-gray-100'>
+                <WhyChooseUs />
             </section>
             <section className='py-12 px-4 lg:px-8'>
                 <h2 className='text-2xl font-bold mb-6'>Featured Courses</h2>
@@ -98,6 +104,10 @@ function StudentHomePage() {
                     }
                 </div>
             </section>
+            <section className='py-8 px-4 lg:px-8 bg-gray-100 py-15'>
+                <Testimonials />
+            </section>
+            <Footer />
         </div>
     );
 }
