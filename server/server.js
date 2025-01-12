@@ -18,14 +18,13 @@ const MONGO_URL = process.env.VITE_MONGO_URL;
 
 app.use(express.json());
 
-// const corsOptions = {
-//     methods: ['GET','POST','PUT','DELETE'],
-//     origin: ['http://localhost:5173','https://lms-learn-2f9p5ptjp-harshitha-naladalas-projects.vercel.app'],
-//     allowedHeaders: ['Content-Type','Authorization'],
-// };
+const corsOptions = {
+    methods: ['GET','POST','PUT','DELETE'],
+    origin: '*',
+    allowedHeaders: ['Content-Type','Authorization'],
+};
 
-// app.use(cors(corsOptions));
-app.use(cors());
+app.use(cors(corsOptions));
 
 //Database Connetion
 mongoose.connect(MONGO_URL)
