@@ -20,7 +20,9 @@ app.use(express.json());
 
 const corsOptions = {
     methods: ['GET','POST','PUT','DELETE'],
-    origin: '*',
+    origin: [
+        'https://lms-learn-tawny.vercel.app',
+    ],
     allowedHeaders: ['Content-Type','Authorization'],
 };
 
