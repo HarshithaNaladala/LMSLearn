@@ -1,7 +1,11 @@
 import axios from "axios";
 
+const baseURL = import.meta.env.MODE === 'development' 
+    ? 'http://localhost:5000'  // Use local backend when in development mode
+    : 'https://lms-learn-tawny.vercel.app';
+
 const axiosInstance = axios.create({
-    baseURL: 'https://lms-learn-tawny.vercel.app',
+    baseURL,
 });
 
 axiosInstance.interceptors.request.use(config => {

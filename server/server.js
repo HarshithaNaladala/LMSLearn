@@ -16,12 +16,15 @@ const app = express();
 const PORT = process.env.VITE_PORT;
 const MONGO_URL = process.env.VITE_MONGO_URL;
 
-app.use(express.json());
+// app.use(express.json());
+app.use(express.json({ limit: '50mb' }));  // Increase JSON payload size
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 const corsOptions = {
     methods: ['GET','POST','PUT','DELETE'],
     origin: [
         'https://lms-learn-tawny.vercel.app',
+        'http://localhost:5173',
     ],
     allowedHeaders: ['Content-Type','Authorization'],
 };
