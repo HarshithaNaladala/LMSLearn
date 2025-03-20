@@ -3,12 +3,7 @@ const router = express.Router();
 const multer = require('multer')
 const {uploadMediaToCloudinary, deleteMediaFromCloudinary} = require('../../helpers/cloudinary')
 
-// const upload = multer({dest: 'uploads/'});
-// const upload = multer({ dest: '/tmp/uploads' });
-const upload = multer({
-    dest: '/tmp/uploads',
-    limits: { fileSize: 20 * 1024 * 1024 }, // 20MB limit
-});
+const upload = multer({ dest: '/tmp/uploads' });
 
 router.post('/upload', upload.single('file'), async(req,res)=>{
     try{
