@@ -4,6 +4,18 @@ const StudentCourses = require('../../models/StudentCourses');
 const Course = require('../../models/Course');
 
 const createOrder = async(req,res) => {
+
+    const isDevelopment = process.env.VITE_MODE === 'development';
+
+    const returnUrl = isDevelopment 
+        ? `${process.env.VITE_CLIENT_URL}/payment-return` 
+        : 'https://lms-learn-tawny.vercel.app/payment-return';
+
+    const cancelUrl = isDevelopment 
+        ? `${process.env.VITE_CLIENT_URL}/payment-cancel` 
+        : 'https://lms-learn-tawny.vercel.app/payment-cancel';
+
+
     try{
         const {
             userId,
@@ -28,9 +40,13 @@ const createOrder = async(req,res) => {
             payer: {
                 payment_method: 'paypal',
             },
+            // redirect_urls: {
+            //     return_url: `${process.env.VITE_CLIENT_URL}/payment-return`,
+            //     cancel_url: `${process.env.VITE_CLIENT_URL}/payment-cancel`
+            // },
             redirect_urls: {
-                return_url: `${process.env.VITE_CLIENT_URL}/payment-return`,
-                cancel_url: `${process.env.VITE_CLIENT_URL}/payment-cancel`
+                return_url: returnUrl,
+                cancel_url: cancelUrl,
             },
             transactions: [
                 {
