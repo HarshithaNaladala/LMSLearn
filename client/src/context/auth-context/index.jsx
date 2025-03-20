@@ -30,45 +30,6 @@ function AuthProvider({children}){
         setDialog({ ...dialog, isOpen: false });
     };
 
-    // async function handleRegisterUser(event) {
-    //     event.preventDefault();
-    //     const data = await registerService(signUpFormData);
-
-    //     if(data.success){
-    //         // alert("User Registered Successfully!");
-    //         openDialog("Registration Successful", "User Registered Successfully!");
-    //         setSignUpFormData(initialSignUpFormData);
-    //         setActiveTab('signin');
-    //     }
-    //     else{
-    //         // alert("User Not Registered Successfully!");
-    //         openDialog("Registration Failed", "User Not Registered Successfully!");
-    //     }
-    // }
-
-    // async function handleLoginUser(event) {
-    //     event.preventDefault();
-    //     const data = await loginService(signInFormData);
-
-    //     if(data.success){
-    //         sessionStorage.setItem('accessToken',data.data.accessToken);
-    //         setAuth({
-    //             authenticate: true,
-    //             user: data.data.user,
-    //         })
-    //         setSignInFormData(initialSignInFormData);
-    //         openDialog("Login Successful", "Welcome back!");
-    //     }
-    //     else{
-    //         setAuth({
-    //             authenticate: false,
-    //             user: null,
-    //         })
-    //         openDialog("Login Failed", "Check your credentials and try again.");
-    //     }
-
-    // }
-
     async function handleRegisterUser(event) {
         event.preventDefault();
         try {
