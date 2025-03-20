@@ -40,10 +40,6 @@ const createOrder = async(req,res) => {
             payer: {
                 payment_method: 'paypal',
             },
-            // redirect_urls: {
-            //     return_url: `${process.env.VITE_CLIENT_URL}/payment-return`,
-            //     cancel_url: `${process.env.VITE_CLIENT_URL}/payment-cancel`
-            // },
             redirect_urls: {
                 return_url: returnUrl,
                 cancel_url: cancelUrl,
