@@ -44,9 +44,6 @@ function CourseSettings() {
         }
     }
 
-    console.log(courseLandingFormData);
-
-
     return (
         <Card>
             <CardHeader>

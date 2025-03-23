@@ -11,10 +11,8 @@ function PaypalPaymentReturnPage() {
   const payerId = params.get("PayerID");
 
   useEffect(() => {
-    console.log('paymentid:',paymentId,'payerid:',payerId);
     if (payerId && paymentId) {
       async function capturePayment() {
-        console.log('entered capturePayment');
         const orderId = JSON.parse(sessionStorage.getItem("currentOrderId"));
         const response = await captureAndFinalizePaymentService({
           paymentId,

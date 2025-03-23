@@ -1,6 +1,3 @@
-import { courseCategories } from '@/config';
-// import banner from '../../../../public/banner-img.png';
-import { Button } from '@/components/ui/button';
 import { useContext, useEffect } from 'react';
 import { StudentContext } from '@/context/student-context';
 import { checkCoursePurchaseInfoService, fetchStudentViewCourseListService } from '@/services';
@@ -37,17 +34,6 @@ function StudentHomePage() {
         }
     }
 
-    function handleNavigateToCoursesPage(getCurrentId){
-        sessionStorage.removeItem('filters');
-        const currentFilter = {
-            category: [getCurrentId]
-        }
-
-        sessionStorage.setItem('filters', JSON.stringify(currentFilter));
-
-        navigate('/courses');
-    }
-
     useEffect(()=>{
         fetchAllStudentViewCourses()
     },[])
@@ -63,21 +49,6 @@ function StudentHomePage() {
                     <img src="/banner-img.png" width={600} height={400} className='w-full h-auto rounded-lg shadow-lg'/>
                 </div>
             </section>
-            {/* <section className='py-8 px-4 lg:px-8 bg-gray-100'>
-                <h2 className='text-2xl font-bold mb-6'>Course categories</h2>
-                <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4'>
-                    {
-                        courseCategories.map(categoryItem=>(
-                            <Button 
-                                key={categoryItem.id} 
-                                variant='outline' 
-                                className='justify-start'
-                                onClick={()=>handleNavigateToCoursesPage(categoryItem.id)}
-                            >{categoryItem.label}</Button>
-                        ))
-                    }
-                </div>
-            </section> */}
             <section className='py-8 px-4 lg:px-8 bg-gray-100'>
                 <WhyChooseUs />
             </section>

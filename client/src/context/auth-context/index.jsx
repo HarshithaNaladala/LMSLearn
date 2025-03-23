@@ -58,7 +58,7 @@ function AuthProvider({children}){
                     user: data.data.user,
                 });
                 setSignInFormData(initialSignInFormData);
-                openDialog("Login Successful", "Welcome back!");
+                openDialog("Login Successful!");
             } else {
                 openDialog("Login Failed", data.message || "Check your credentials and try again.");
             }

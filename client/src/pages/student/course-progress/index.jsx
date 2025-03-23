@@ -189,7 +189,7 @@ function StudentViewCourseProgressPage() {
                 <DialogContent className='sm:w-[425px]'>
                     <DialogHeader>
                         <DialogTitle>
-                            Congratulation!
+                            Congratulations!
                         </DialogTitle>
                         <DialogDescription className='flex flex-col gap-3'>
                             <Label>You have completed the course</Label>

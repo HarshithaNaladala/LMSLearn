@@ -104,7 +104,6 @@ function AddNewCoursePage() {
         return acc;
       }, {});
 
-      console.log(setCourseFormData, "setCourseFormData");
       setCourseLandingFormData(setCourseFormData);
       setCourseCurriculumFormData(response?.data?.curriculum);
     }
@@ -138,9 +137,7 @@ function AddNewCoursePage() {
             <Tabs defaultValue="curriculum" className="space-y-4">
               <TabsList>
                 <TabsTrigger value="curriculum">Curriculum</TabsTrigger>
-                <TabsTrigger value="course-landing-page">
-                  Course Landing Page
-                </TabsTrigger>
+                <TabsTrigger value="course-landing-page">Course Landing Page</TabsTrigger>
                 <TabsTrigger value="settings">Settings</TabsTrigger>
               </TabsList>
               <TabsContent value="curriculum">

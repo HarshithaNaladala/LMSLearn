@@ -63,7 +63,7 @@ function InstructorDashboardPage() {
                             menuItems.map(menuItem=>
                             <Button 
                                 key={menuItem.value} 
-                                className="w-full justify-start mb-2"
+                                className={`w-full justify-start mb-2 ${activeTab === menuItem.value ? 'bg-gray-300' : ''}`}
                                 variant = {activeTab===menuItem.value? 'secondary' : 'ghost'}
                                 onClick={menuItem.value === 'logout' 
                                     ? handleLogout 
@@ -78,9 +78,13 @@ function InstructorDashboardPage() {
             </aside>
             <main className="flex-1 p-8 overflow-y-auto">
                 <div className="max-w-7xl mx-auto">
-                    <h1 className="text-3xl font-bold mb-8">
-                        Dashboard
-                    </h1>
+                    {
+                        activeTab == 'dashboard' ? 
+                        <h1 className="text-3xl font-bold mb-8">
+                            Dashboard
+                        </h1> 
+                        : <></>
+                    }
                     <Tabs value={activeTab} onValueChange={setActiveTab}>
                         {
                             menuItems.map(menuItem=> <TabsContent value={menuItem.value} key={menuItem.value}>

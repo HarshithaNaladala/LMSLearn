@@ -96,7 +96,7 @@ const getCurrentCourseProgress = async(req,res) => {
 
         const currentUserCourseProgress = await CourseProgress.findOne({userId, courseId});
         
-        if(!currentUserCourseProgress ||     currentUserCourseProgress?.lectureProgress?.length === 0){
+        if(!currentUserCourseProgress || currentUserCourseProgress?.lectureProgress?.length === 0){
             const course = await Course.findById(courseId);
 
             if(!course){

@@ -8,7 +8,6 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 function AuthPage() {
-    // const [activeTab, setActiveTab] = useState('signin');
 
     const {
         signInFormData, 
