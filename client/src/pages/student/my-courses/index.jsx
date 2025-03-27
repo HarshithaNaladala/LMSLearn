@@ -18,7 +18,7 @@ function StudentCoursesPage(){
     const [isLoading, setLoading] = useState(true); 
 
     async function fetchStudentBoughtCourses() {
-        setLoading(true); // Start loading before fetching data
+        setLoading(true); 
         try {
             const response = await fetchStudentBoughtCoursesService(auth?.user?._id);
             if(response?.success){
@@ -29,7 +29,7 @@ function StudentCoursesPage(){
         } catch (error) {
             console.error("Error fetching courses:", error);
         } finally {
-            setLoading(false); // End loading after data is fetched or failed
+            setLoading(false); 
         }
     }
 
@@ -42,7 +42,7 @@ function StudentCoursesPage(){
         <div className="p-4">
             <h1 className="text-3xl font-bold mb-8">My Courses</h1>
             {isLoading ? (
-                <Skeleton count={3} className="h-52 mb-4" /> // Adjust Skeleton to match your layout
+                <Skeleton count={3} className="h-52 mb-4" /> 
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
                     {studentBoughtCoursesList && studentBoughtCoursesList.length > 0 ? 
